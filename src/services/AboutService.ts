@@ -30,7 +30,7 @@ class AboutService {
         return about;
     }
 
-    async getAbout() {
+    async getAboutList() {
         const about = await this.aboutRepository.find();
 
         if (!about) throw new Error("There is no about in The Database");

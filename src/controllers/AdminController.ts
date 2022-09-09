@@ -37,7 +37,7 @@ class AdminController {
     }
 
     async getAdminByUsername(req: Request, res: Response) {
-        const { username } = req.body;
+        const { username } = req.params;
 
         const adminService = new AdminService();
 

@@ -37,7 +37,13 @@ class AdminService {
 
         if (!admins) throw new Error("There is no Admin in The Database");
 
-        return admins;
+
+        return admins.map(admin => {
+            const editedAdmin = admin;
+            editedAdmin.password = "";
+
+            return editedAdmin;
+        });
     }
 
     async getAdminByUsername(username: string) {
@@ -45,6 +51,7 @@ class AdminService {
 
         if (!admin) throw new Error("Admin Profile don't exists");
 
+        admin.password = '';
         return admin;
     }
 
@@ -84,6 +91,7 @@ class AdminService {
 
         const acessToken = jwt.sign({admin}, "" + process.env.ACESS_TOKEN_SECRET, { expiresIn: '90m' });
 
+        admin.password = "";
         return { acessToken, admin }
     }
 
